@@ -108,7 +108,7 @@
 <p>r = /\d{5,}/;//字符串中连续5个以上数字；<br>console.log(r.test(“1234a545679”));//1</p>
 <p>//匹配qq<br>r = /[1-9]\d{4,11}/;<br>console.log(r.test(“012345”));//true //不能只看整体，要依次看匹配情况</p>
 <hr>
-<h4 id="贪婪匹配与非贪婪匹配"><a href="#贪婪匹配与非贪婪匹配" class="headerlink" title="贪婪匹配与非贪婪匹配"></a>贪婪匹配与非贪婪匹配</h4><h4 id="默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个-号即可；"><a href="#默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个-号即可；" class="headerlink" title="默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个?号即可；"></a>默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个?号即可；</h4><p>例子：<br>  var s = “gggg<a href="mailto:&#x61;&#97;&#97;&#x40;&#105;&#x74;&#115;&#111;&#117;&#114;&#x63;&#101;&#x2e;&#x63;&#110;">&#x61;&#97;&#97;&#x40;&#105;&#x74;&#115;&#111;&#117;&#114;&#x63;&#101;&#x2e;&#x63;&#110;</a>和<a href="mailto:&#x62;&#x62;&#98;&#64;&#x69;&#116;&#115;&#111;&#x75;&#114;&#x63;&#101;&#46;&#x63;&#110;">&#x62;&#x62;&#98;&#64;&#x69;&#116;&#115;&#111;&#x75;&#114;&#x63;&#101;&#46;&#x63;&#110;</a>hhhhh”;</p>
+<h4 id="贪婪匹配与非贪婪匹配"><a href="#贪婪匹配与非贪婪匹配" class="headerlink" title="贪婪匹配与非贪婪匹配"></a>贪婪匹配与非贪婪匹配</h4><h4 id="默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个-号即可；"><a href="#默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个-号即可；" class="headerlink" title="默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个?号即可；"></a>默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个?号即可；</h4><p>例子：<br>  var s = “gggg<a href="mailto:&#97;&#x61;&#x61;&#64;&#105;&#116;&#x73;&#x6f;&#117;&#x72;&#99;&#x65;&#46;&#x63;&#x6e;">&#97;&#x61;&#x61;&#64;&#105;&#116;&#x73;&#x6f;&#117;&#x72;&#99;&#x65;&#46;&#x63;&#x6e;</a>和<a href="mailto:&#x62;&#x62;&#98;&#x40;&#105;&#116;&#115;&#x6f;&#117;&#114;&#x63;&#x65;&#46;&#x63;&#x6e;">&#x62;&#x62;&#98;&#x40;&#105;&#116;&#115;&#x6f;&#117;&#114;&#x63;&#x65;&#46;&#x63;&#x6e;</a>hhhhh”;</p>
 <p>  var r = /&lt;.*&gt;/;<br>  console.log(r.test(s));<br>  console.log(r.exec(s));<br>  console.log(r.exec(s).length);<br>  console.log(r.exec(s)[0]);</p>
 <p>  r = /&lt;.*?&gt;/;<br>  console.log(r.test(s));<br>  console.log(r.exec(s));<br>  console.log(r.exec(s).length);<br>  console.log(r.exec(s)[0]);</p>
 <p>  // g全局匹配，匹配了第一个，然后接着继续匹配，执行一次匹配一次<br>  r = /&lt;.*?&gt;/g;<br>  console.log(r.exec(s));<br>  console.log(r.exec(s)[0]);</p>
@@ -141,7 +141,7 @@
         <p class="suffix-end">__END__</p>
         <div class="suffix-box">
             <div class="suffix-box-left">
-                <img src="http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWNryAUQjIABMqVoPLALU536.png" alt="Suki">
+                <img src="https://moranso.github.io/For-u/2.png" alt="Suki">
             </div>
             <div class="suffix-box-right">
                 <span class="suffix-box-title">文章作者</span>：Suki
@@ -251,7 +251,7 @@
         GitHubRepositories : 'Hexo-LiveForCode',
 
         BlogUser      : 'Suki',
-        BlogAvatar    : 'http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWNryAUQjIABMqVoPLALU536.png',
+        BlogAvatar    : 'https://moranso.github.io/For-u/2.png',
         BlogStartDate : '2021-05-08',
 
         WebsiteTitleBlur         : '(◍´꒳`◍)',
@@ -354,7 +354,7 @@
 
         HomeHeaderImage : [
             
-                'http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWKJeAGtMAAALNZlUgWKk288.jpg',
+                'https://moranso.github.io/For-u/cat.jpg',
             
                 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpeg',
             
