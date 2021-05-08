@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>Linux常用命令总结</title>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <a id="cover"></a>
+    <div id="header">
+    <div class="header">
+        <div class="vertical">
+            <div class="inner">
+                <h1 class="header-subtitle">Linux常用命令总结</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2019-03-12
+                        </span>
+                        
+                            <span id="/2019/03/12/Linux常用命令总结/" class="leancloud_visitors" data-flag-title="Linux常用命令总结">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2019/03/12/Linux常用命令总结/"></span>
+                        </span>  
+                    </p>                 
+                </div>
+            </div>
+        </div>
+        <canvas id="articleHeaderCanvas"></canvas>
+    </div>
+</div>
+    <div id="container">
+    <div id="content">
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h4 id="1-virtualbox两种主要的网络连接方式"><a href="#1-virtualbox两种主要的网络连接方式" class="headerlink" title="1.virtualbox两种主要的网络连接方式"></a>1.virtualbox两种主要的网络连接方式</h4><p>nat：虚拟机分配IP：10.0.2.15（255.255.255.0），网关是：10.0.2.2<br>虚拟机没有在本地局域网中占IP。实体机通过学校认证之后，虚拟机可以直接上网。</p>
+<p>桥接：实体机和虚拟机在同一IP段。比如在1407教室里。172.17.6.x（255.255.255.0）：<br>实体机和虚拟机需要分别通过学校的认证才能上网。</p>
+<h4 id="2-验证一下当前的IP"><a href="#2-验证一下当前的IP" class="headerlink" title="2.验证一下当前的IP"></a>2.验证一下当前的IP</h4><p>Windows： ipconfig ipconfig /all<br>Linux：   ifconfig ip a<br>centos：可能需要，在界面先连接“PCI以太网”</p>
+<h4 id="3-备份虚拟机的硬盘"><a href="#3-备份虚拟机的硬盘" class="headerlink" title="3.备份虚拟机的硬盘"></a>3.备份虚拟机的硬盘</h4><h5 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h5><p>windows:cmd.exe powershell.exe<br>linux: Bash</p>
+<h4 id="查看当前用的那种shell"><a href="#查看当前用的那种shell" class="headerlink" title="查看当前用的那种shell"></a>查看当前用的那种shell</h4><h5 id="env"><a href="#env" class="headerlink" title="env"></a>env</h5><p>输出信息有：<br>SHELL=/bin/bash</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="ls-列出文件（list）"><a href="#ls-列出文件（list）" class="headerlink" title="ls:列出文件（list）"></a>ls:列出文件（list）</h4><p>常见用法：<br>ls-ls  //列出详细信息<br>0 drwxrwxr-x. 2 caidao caidao 6 3月 6 10:37 123<br>第一个d：代表目录<br>第一组rwx：表示所有者可读，写，执行<br>第二组rwx：表示同组用户可读，写，执行<br>第三组r-x：表示其它用户可读，不能写，可执行。<br>caidao caidao：表示该目录属于caidao这个用户，同时属性caidao这个组。<br>时间：表示文件最后访问时间<br>123：目录名</p>
+<h4 id="cat：输出文本文件的内容"><a href="#cat：输出文本文件的内容" class="headerlink" title="cat：输出文本文件的内容"></a>cat：输出文本文件的内容</h4><h5 id="常见用法："><a href="#常见用法：" class="headerlink" title="常见用法："></a>常见用法：</h5><p>cat 文件名<br>cat 路径/路径/文件名</p>
+<h4 id="cd：改变当前路径的，进入某个目录"><a href="#cd：改变当前路径的，进入某个目录" class="headerlink" title="cd：改变当前路径的，进入某个目录"></a>cd：改变当前路径的，进入某个目录</h4><h5 id="常见用法：-1"><a href="#常见用法：-1" class="headerlink" title="常见用法："></a>常见用法：</h5><p>cd 123           进入当前目录下的123    &lt;a href=”123.jsp&gt;链接</a><br>cd ./123        与上面一样                &lt;a href=”./123.jsp&gt;链接</a><br>cd /                进入根目录                <a href="/">首页</a><br>cd /home          进入根下面的home<br>cd ..            回到上一层目录        <a href="../">aa</a><br>cd ../../           回到上一层的上一层    <a href="../../">aa</a><br>cd ../abc        去到与当前目录同级的abc里 <a href="../abc">aa</a><br>cd ~            回家<br>cd ~/               回家                    </p>
+<p>pwd：查看当前路径</p>
+<p>tree：以树型方式显示目录结构（没有这个命令，先安装sudo yum -y install tree）</p>
+<h4 id="mkdir：创建目录"><a href="#mkdir：创建目录" class="headerlink" title="mkdir：创建目录"></a>mkdir：创建目录</h4><h5 id="常见用法：-2"><a href="#常见用法：-2" class="headerlink" title="常见用法："></a>常见用法：</h5><p>mkdir abc               在当前目录下创建adc目录<br>mkdir ~/abc           在自己家里创建abc:/home/user/abc<br>mkdir -p ~/abc/de     在自己家里先创建abc，然后在abc下创建de</p>
+<h4 id="tar：用来压缩，解压，打包，解包的"><a href="#tar：用来压缩，解压，打包，解包的" class="headerlink" title="tar：用来压缩，解压，打包，解包的"></a>tar：用来压缩，解压，打包，解包的</h4><p>打包：tar cvf 生成的包的名字.tar目录名<br>解包：tar xvf 包的名字.tar</p>
+<p>测试的步骤<br>1.先在目录里建一个文本文件<br>2.打包<br>3.把目录改个名字<br>4.解包<br>5.比较目录里的文件对不对</p>
+<p>帮助记忆：<br>c:创建<br>z:压缩，并且使用gz算法；<br>v：处理的时候，有信息才显示出来；<br>f.验证<br>x.解包<br>每个命令一般都加vf<br>c和x冲突的，只能加一个<br>带z的指令都用压缩有关</p>
+<h4 id="zxvf解压缩包"><a href="#zxvf解压缩包" class="headerlink" title="zxvf解压缩包"></a>zxvf解压缩包</h4><p>如果文件的后缀名是.tar 说明他是？<br>如果文件后缀名是.tar.gz 说明他是？</p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>wget <a target="_blank" rel="noopener" href="http://mirror.bit.edu.cn/apache/httpd/httpd/httpd-2.4.25.tar.gz">http://mirror.bit.edu.cn/apache/httpd/httpd/httpd-2.4.25.tar.gz</a></p>
+<h4 id="cp-复制文件或目录"><a href="#cp-复制文件或目录" class="headerlink" title="cp:复制文件或目录"></a>cp:复制文件或目录</h4><p>用法：<br>cp 1.txt 2.txt<br>cp -r 要复制的目录 新目录</p>
+<p>ln:创建链接（相当于windows下的“快捷方式”）<br>例如：<br>cd ~/桌面<br>ln -s/usr/bin/java    //这样在桌面上创建一个java的“快捷方式”<br>                    //-表示创建软链接<br>ls-ls                //可以观察一下java这个文件的信息</p>
+<h4 id="touch：创建一个文件，更新创建时间和访问时间"><a href="#touch：创建一个文件，更新创建时间和访问时间" class="headerlink" title="touch：创建一个文件，更新创建时间和访问时间"></a>touch：创建一个文件，更新创建时间和访问时间</h4><p>例如：<br>touch scitc.txt</p>
+<h4 id="su-切换身份"><a href="#su-切换身份" class="headerlink" title="su:切换身份"></a>su:切换身份</h4><p>例如：<br>su root                //切换成root用户<br>                    //观察切换成root之后的提示符<br>                    //输入root的密码<br>su caidao                    //切换成caidao</p>
+<p>sudo：不切换身份，但以root身份运行程序<br>例如：<br>mkdir /123            //权限不够，执行不了<br>sudo mkdir /123        //这样权限够，提示输入密码，输入当前用户的密码</p>
+<p>top：查看系统资源</p>
+<h4 id="du：查看文件或者目录的大小"><a href="#du：查看文件或者目录的大小" class="headerlink" title="du：查看文件或者目录的大小"></a>du：查看文件或者目录的大小</h4><p>常见用法：<br>du：                    //查看当前目录下的文件大小<br>du -h                 //同上，它k,m,g这些单位<br>du -h /              //查看根目录下的文件或者目录大小<br>                    //这个命令会运行很久，他要计算每一层<br>du -h -d 1 ~        //计算“自己家”目=目录和文件的大小。<br>                    //只输出一层的结果</p>
+<p>思考：要统计“桌面”目录的大小，参数要怎么写？</p>
+<h4 id="uname：输出系统信息"><a href="#uname：输出系统信息" class="headerlink" title="uname：输出系统信息"></a>uname：输出系统信息</h4><p>常见用法：<br>uname -a            //可以看出Linu内核版本，发布时间，机器名称等<br>                    //不可以看到centos的版本<br>cat /etc/redhat-release  //kan centos的版本</p>
+<p>exit：退出bash，关闭窗口</p>
+<p>hostname：输入计算机名称<br>改名字：<br>hostnamectl set-hostname 名字</p>
+<p>passwd：改密码</p>
+<h4 id="rm：删文件或者目录"><a href="#rm：删文件或者目录" class="headerlink" title="rm：删文件或者目录"></a>rm：删文件或者目录</h4><p>常见用法<br>rm 文件名<br>rm -r 目录名<br>rm -rf 目录或者文件</p>
+<p>mv：移动或者重命名<br>mv 老的目录或者文件 新的目录或者文件</p>
+<p>4.目录结构</p>
+<h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><p>1.启动<br>vim<br>vim 文件名   #文件可以存在，也可以不存在</p>
+<p>2.vim工作模式<br>（1）普通模式<br>（2）编辑模式<br>（3）命令模式</p>
+<p>3.切换工作模式<br>普通-&gt;编辑(i,a,I,A)<br>普通-&gt;命令（：）<br>编辑-&gt;普通（ESC）</p>
+<p>4.常用的快捷键或者命令<br>：q            #退出<br>：w            #保存<br>：w 文件名    #保存，并指定一个名字<br>：wq            #保存并退出<br>：q!            #退出但不保存<br>dd            #删除一整行<br>qq            #光标移动到文件头部<br>G            #光标移动到文件结尾</p>
+<p>5.杀进程<br>sudo kill 数字<br>sudo kill -9 数字</p>
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><p>useradd -d/user/sam -m aam            #-d指定home，<br>                    #-m是创建家目录<br>useradd -s /bin/sh -g group -Gadm,root gem         #-s指定shell<br>                                                           #-g组的id<br>                                                          #-G是附加组</p>
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><p>userdel [-r] 用户名               #-r删除用户的同时，把家目录删了</p>
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p>sudo    paswd    用户名        #修改别人的密码一定要用root;</p>
+<h4 id="增加用户组"><a href="#增加用户组" class="headerlink" title="增加用户组"></a>增加用户组</h4><p>groupadd soft 组名</p>
+<h4 id="删除组名"><a href="#删除组名" class="headerlink" title="删除组名"></a>删除组名</h4><p>groupdel  组名</p>
+<h4 id="修改用户所属组"><a href="#修改用户所属组" class="headerlink" title="修改用户所属组"></a>修改用户所属组</h4><p>usermod -g group（组名） loginname（登录名）<br>强行设置某个用户的主要组</p>
+<p>usermod -G groups longinname<br>设置用户的附加组（把以前的附加组都去掉，只留设置的当前组）</p>
+<p>usermod -a -G groups loninname<br>把用户添加进入某个附加组（之前有的组不变，在后面增加）</p>
+<p>#如果用户不能使用sudo，可以把用户加到wheel组<br>sudo usermod -a -G wheel abc</p>
+<h4 id="查询用户的组"><a href="#查询用户的组" class="headerlink" title="查询用户的组"></a>查询用户的组</h4><p>groups 用户名                             // 查询用户的组<br>cat     /etc/group                       //查询系统所有组<br>cat     /etc/passwd                     //查询系统用户</p>
+<p>chown 的用法，用来更改文件或者目录的所有者和组<br>chown [-r] 用户名：组名 文件或者目录名</p>
+<h4 id="chmod的用法，用来更改文件或者目录的权限"><a href="#chmod的用法，用来更改文件或者目录的权限" class="headerlink" title="chmod的用法，用来更改文件或者目录的权限"></a>chmod的用法，用来更改文件或者目录的权限</h4><p>chmod     [R]     权限 文件名或者目录名<br>例如：<br>chmod     +x 1.txt                   #让所有者，同组用户，其他用户都可以执行1.txt<br>chmod     -w  2.txt                  #让所有者，同组用户，其他用户都不可以写2.txt<br>chomd     u-w 3.tx                  #让所有者不能写3.txt，+或者-前面可以是u（所有者）<br>                                              o(其他用户)，g（同组用户）+代表给权限，-代表收回权限<br>chomd  g+rwx 4.txt                 #一次给多个权限<br>chomd  oug+rwx 5.txt             #相当于777<br>chomd  124 5.txt                     #第一位是1，代表所有者可执行<br>            #第二位是2，代表同组用户可写<br>            #第三位是4，代表其它用户可以读<br>            #1,2,4三个数字可以组合，比如3=2+1 表示可写可执行<br>            7=1+2+4，表示全部都可以</p>
+<h4 id="分区管理-fdisk"><a href="#分区管理-fdisk" class="headerlink" title="分区管理(fdisk)"></a>分区管理(fdisk)</h4><p>fdisk 硬盘的名字<br>(1)列出分区(p)<br>(2)删分区(d)<br>(3)建分区表(g:创建gpt分区表；m:创建mbr的分区表)<br>(4)建分区(n)</p>
+<h4 id="管理文件系统-mkfs，mkswap，swapon，swapoff，mount，umount"><a href="#管理文件系统-mkfs，mkswap，swapon，swapoff，mount，umount" class="headerlink" title="管理文件系统(mkfs，mkswap，swapon，swapoff，mount，umount)"></a>管理文件系统(mkfs，mkswap，swapon，swapoff，mount，umount)</h4><h5 id="创建文件系统"><a href="#创建文件系统" class="headerlink" title="创建文件系统"></a>创建文件系统</h5><p>mkfs -t ext3 /dev/sdb1<br>mkswap /dev/sdb5 (在指定分区上创建交换文件系统、将/dev/sdb5格式转换为swap交换文件系统)<br>free | grep -i swap (通过free命令观察交换空间的变化)<br>swapon /dev/sdb5 (启用新的交换分区)<br>swapoff /dev/sdb5 (停用交换分区)</p>
+<h5 id="挂载卸载文件系统"><a href="#挂载卸载文件系统" class="headerlink" title="挂载卸载文件系统"></a>挂载卸载文件系统</h5><p>mount [-t 文件系统类型] 存储设备 挂载点<br>mount /devrom /media/cdrom (插入RHEL5光盘，并挂载到/media/cdrom中)<br>mount /dev/sdc1 /media/usbdsk (插入一个U盘，将其挂载到/media/usbdsk，挂载点需要事先创建好)<br>mount (直接输入也可查看系统中已挂载的各分区信息)<br>mount -o loop *****.iso /media/ubuntu (将下载的ISO镜像文件挂载到/media/ubuntu下)<br>umount /media/usbdsk (卸载已挂载到/media/usbdsk目录下的U盘文件系统)<br>eject和eject -t (对于光驱设备来说，前者是弹出托架、后者是收回托架)<br>cat /etc/fstab (/etc/fstab文件可以视为mount命令的配置文件、系统每次开机时会自动读取这个文件的配置)</p>
+<h5 id="显示单个环境变量"><a href="#显示单个环境变量" class="headerlink" title="显示单个环境变量"></a>显示单个环境变量</h5><p>echo $xxx</p>
+<h5 id="设置一个新的环境变量hello-并且显示出来（注意大小书写）"><a href="#设置一个新的环境变量hello-并且显示出来（注意大小书写）" class="headerlink" title="设置一个新的环境变量hello,并且显示出来（注意大小书写）"></a>设置一个新的环境变量hello,并且显示出来（注意大小书写）</h5><p>$ export HELLO=”Hello!”<br>echo $HELLO</p>
+<h5 id="显示素有环境变量"><a href="#显示素有环境变量" class="headerlink" title="显示素有环境变量"></a>显示素有环境变量</h5><p>env</p>
+<h5 id="清除环境变量"><a href="#清除环境变量" class="headerlink" title="清除环境变量"></a>清除环境变量</h5><p>unset</p>
+<h5 id="环境变量种类"><a href="#环境变量种类" class="headerlink" title="环境变量种类"></a>环境变量种类</h5><p>临时的，永久的</p>
+<h5 id="设置永久变量的几个文件"><a href="#设置永久变量的几个文件" class="headerlink" title="设置永久变量的几个文件"></a>设置永久变量的几个文件</h5><p>/etc/profile 对所有的用户生效<br>~/.bash_profile 对单一用户生效（当前用户）<br>~/.bashrc 对单一用户生效，子bash启动才生效<br>/ect/bashrc也同样，只是全局的</p>
+<p>7、修改两个profile之后，如果不想重启，可以执行下面的命令<br>source 文件名让它立即生效，如果改了bashrc文件，也可以用source来重新加载，也可以关闭了终端，重新打开，不需要重启</p>
+<h4 id="设置静态IP地址"><a href="#设置静态IP地址" class="headerlink" title="设置静态IP地址"></a>设置静态IP地址</h4><p>1.备份/etc/sysconfig/network-scropts/ifcfg-<em>,每个虚拟机的<br>2.vim etc/sysconfig/network-scripts/ifcfg-</em><br>3.将BOOTPROTO=DHCP改为：BOOTPROTO=static,<br>4.增加：IPADDR=192… NETMASK=255… GATEWAY=192…<br>5.改DNS， 在/etc/sysconfig/network中增加：<br>6.第一行：DNS1=61.139.2.69 第二行：DNS=114.114.114.114<br>7.重启网络服务 service network restart<br>8.查看IP地址是否正确 ifconfig<br>9.检查网络是否通ping <a target="_blank" rel="noopener" href="http://www.qq.com/">www.qq.com</a></p>
+<h4 id="使用“源”来管理软件包"><a href="#使用“源”来管理软件包" class="headerlink" title="使用“源”来管理软件包"></a>使用“源”来管理软件包</h4><p>yum install 包的名字            //安装包<br>yum update                //更新<br>yum upgrade                //升级，包括升级系统，类windows update<br>yum remove                //删包<br>yum clean                //清理<br>yum list                //列出所有的包<br>yum list installed            //列出所有已经安装的包<br>yum search                //查找包</p>
+<h5 id="RPM包管理"><a href="#RPM包管理" class="headerlink" title="RPM包管理"></a>RPM包管理</h5><p>rpm -qa                    //查询系统中已经安装的软件<br>rpm -qf 文件名的绝对路径        //查询一个已经安装的文件属于哪个安装包<br>rpm -ql    软件名                //查询已经安装软件包都安装到何处<br>rpm -ivh rqm文件            //安装<br>rpm -Uvh rpm文件            //升级一个rpm文件<br>rpm -s 软件名                //删</p>
+<h5 id="bin文件安装"><a href="#bin文件安装" class="headerlink" title="bin文件安装"></a>bin文件安装</h5><p>（1）设置文件可执行<br>（2）./文件名 直接运行</p>
+<h5 id="源代码编译安装"><a href="#源代码编译安装" class="headerlink" title="源代码编译安装"></a>源代码编译安装</h5><p>（1）解压(tar)<br>（2）./configure <a href="%E8%87%AA%E5%B7%B1%E6%8C%87%E5%AE%9A%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84">–prefiz=newpath</a><br>（3）make &amp;&amp; make install（这一步要有root权限）</p>
+<h5 id="java环境配置"><a href="#java环境配置" class="headerlink" title="java环境配置"></a>java环境配置</h5><ol>
+<li>对tar.gz文件，先解压，然后发现它只是jre 并不是jdk 这个文件就不必安装了</li>
+<li>在oracle的官方下载jdk 地址为：<code>https://www.oracle.com</code></li>
+</ol>
+<p>下载tar.gz的包</p>
+<p>a.解压</p>
+<p>b.<code>/etc/profile</code>中增加</p>
+<p><code>export JAVA_HOME=/你的java路径</code><br><code>export PATH=$PATH:$JAVA_HOME/bin</code></p>
+<p>1.安装<br>yum install -y httped</p>
+<p>2.启动服务<br>service httpd start<br>systemctl start httpd</p>
+<p>3.改端口<br>vim /etc/httpd/conf/httpd.conf<br>Listen 80</p>
+<p>4.在本地访问<br><a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a><br><a target="_blank" rel="noopener" href="http://127.0.0.1/">http://127.0.0.1</a><br>http://内网IP</p>
+<p>5.找出web的根路径<br>DocumentRoot “/var/www/html”</p>
+<p>6.发布静态页面<br>将静态文件放到/var/www/html目录下</p>
+<p>7.关闭防火请,在局域网电脑上查看网页<br>service firewall stop<br>systemctl stop firewall<br>http://内网IP</p>
+<p>9.发布虚拟目录<br>(1)在httpd.conf最后增加<br>    Alias /test “/var/www/test”<br>    &lt;Directory “/var/www/test”&gt;<br>        options Indexes Multiviews<br>        Order allow.deny<br>        Allow from all<br>    </Directory><br>(2)用root账号创建/var/www/test目录<br>(3)在/var/www/test目录下放html文件<br>(4)重启httpd<br>service httpd restart<br>(5)sudo setenforce 0;sudo getenforce;设置SELinux工作模式<br>(6)访问地址:<a target="_blank" rel="noopener" href="http://ip/test">http://ip/test</a></p>
+
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWNryAUQjIABMqVoPLALU536.png" alt="Suki">
+            </div>
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Suki
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2019/03/12/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" target="_blank">Linux常用命令总结</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="article-footer">
+        
+        
+        <div class="article-prev-next">
+            
+                <a href="/2019/03/12/MongoDB%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/" class="prev-prefix">« </a> 上一篇：    <a href="/2019/03/12/MongoDB%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/" title="发布于 2019-03-12 08:38">MongoDB常用查询语句</a>
+                <br>
+            
+            
+                <a href="/2019/03/12/Vue%E7%AC%94%E8%AE%B0/" class="next-prefix">» </a> 下一篇：    <a href="/2019/03/12/Vue%E7%AC%94%E8%AE%B0/" title="发布于 2019-03-12 08:11">Vue笔记</a>
+            
+        </div>
+    </div>
+    
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
+        </div>
+        <div class="comments-content">
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <div id="footer"></div>
+    <div id="sidebar">
+    <div class="menu-wrap" style="display:none;">
+        <nav class="menu">
+            <div class="menu-introduce"> 
+                <div class="introduce-avatar"></div> 
+                <div class="introduce-info"> 
+                    <div class="introduce-user"><span></span></div>        
+                </div> 
+            </div> 
+            <div class="menu-list">
+                <ul></ul> 
+            </div> 
+            <div class="menu-link"></div> 
+        </nav>
+        <button class="menu-button-close"></button>
+        <div class="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"/>
+            </svg>
+        </div>
+    </div>
+    <button class="menu-button-open">MENU</button>
+    <div class="menu-cover"></div>
+</div>
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js"></script>
+<div class="search-window">
+    <div class="search-content">
+        <div class="search-content-icon">
+            <i class="iconfont icon-search"></i>
+        </div>
+        <div id="search-input" class="search-input"></div>
+    </div>
+
+    <div class="search-scroll">
+        <div class="search-result">
+            <div id="search-stats" class="search-stats"></div>
+            <div id="search-hits"></div>
+            <div id="search-pagination" class="search-pagination"></div>
+        </div>
+    </div>
+
+    <span class="search-close-icon">
+        <i class="iconfont icon-close"></i>
+    </span>
+</div>
+    <div id="tools">
+    <div class="progressbar-top"></div>
+
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js"></script>
+        <meting-js id="3778678" lrcshow="false" server="netease" type="playlist" fixed="true" autoplay="false" loop="all" order="random" preload="auto" volume="0.67" mutex="true"></meting-js>
+    
+    
+    <div class="wrap-right"></div>
+    <div class="loading"></div>
+</div>
+    <script>
+    window.config = {
+        GitHubUserName     : 'Moranso',
+        GitHubRepositories : 'Hexo-LiveForCode',
+
+        BlogUser      : 'Suki',
+        BlogAvatar    : 'http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWNryAUQjIABMqVoPLALU536.png',
+        BlogStartDate : '2021-05-08',
+
+        WebsiteTitleBlur         : '(◍´꒳`◍)',
+        WebsiteTitleBlurTimeOut  : 500,
+        WebsiteTitleFocus        : '(*´∇｀*) 欢迎回来!',
+        WebsiteTitleFocusTimeOut : 1000,
+        WebsiteFavicon           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/logo.png',
+
+        ProgressBar: {
+            id       : 'topProgressBar',
+            color    : '#77B6FF',
+            height   : '2px',
+            duration : 0.2
+        },
+
+        Loading: {
+            rebound: {
+                tension  : 16,
+                friction : 5
+            },
+            spinner: {
+                id     : 'spinner',
+                radius : 90,
+                sides  : 3,
+                depth  : 4,
+                colors : {
+                    background : '#F0F0F0',
+                    stroke     : '#272633',
+                    base       : '',
+                    child      : '#272633'
+                },
+                alwaysForward : true,
+                restAt        : 0.5,
+                renderBase    : false
+            }
+        },
+
+        HomeHeaderAnimationRendered : true,
+        HomeHeaderAnimation         : {
+            radius      : 15,
+            density     : 0.2,
+            color       : 'rgba(255, 255, 255, .2)',
+            clearOffset : 0.3
+        },
+
+        ArticleHeaderAnimationRendered : false,
+        ArticleHeaderAnimation         : {
+            triW                  : 14,
+            triH                  : 20,
+            neighbours            : [
+                
+                    'side',
+                
+                    'top',
+                
+                    'bottom',
+                
+            ],
+            speedTrailAppear      : 0.1,
+            speedTrailDisappear   : 0.1,
+            speedTriOpen          : 1,
+            trailMaxLength        : 30,
+            trailIntervalCreation : 100,
+            delayBeforeDisappear  : 2,
+            colors                : [
+                
+                    '#96EDA6',
+                
+                    '#5BC6A9',
+                
+                    '#38668C',
+                
+                    '#374D84',
+                
+                    '#BED5CB',
+                
+                    '#62ADC6',
+                
+                    '#8EE5DE',
+                
+                    '#304E7B',
+                
+            ]
+        },
+
+        BackAnimationRendered          : true,
+        IEBrowserBackAnimationRendered : false,
+        BackAnimation                  : {
+            colorSaturation  : '60%',
+            colorBrightness  : '50%',
+            colorAlpha       : 0.5,
+            colorCycleSpeed  : 5,
+            verticalPosition : 'random',
+            horizontalSpeed  : 200,
+            ribbonCount      : 3,
+            strokeSize       : 0,
+            parallaxAmount   : -0.2,
+            animateSections  : true
+        },
+
+        HomeHeaderImage : [
+            
+                'http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWKJeAGtMAAALNZlUgWKk288.jpg',
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpeg',
+            
+        ],
+        HomeBannerText  : '',
+
+        ArticleHeaderImage : [
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/article.jpg',
+            
+        ],
+
+        OtherBannerText : '',
+
+        MenuList : [
+            
+                {
+                    name   : '首页',
+                    href   : '/',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '标签',
+                    href   : '/tag',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '分类',
+                    href   : '/category',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '归档',
+                    href   : '/archive',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '赞赏',
+                    href   : '/donate',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '关于',
+                    href   : '/about',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '订阅',
+                    href   : '/atom.xml',    
+                    target : '_blank',
+                    class  : ''
+                },
+            
+                {
+                    name   : '搜索',
+                    href   : '',    
+                    target : '',
+                    class  : 'search'
+                },
+            
+                {
+                    name   : '留言板',
+                    href   : '/comment',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '友情链接',
+                    href   : '/friend',    
+                    target : '',
+                    class  : ''
+                },
+            
+        ],
+        MenuLink : [
+            
+                
+                    {
+                        icon : 'icon-weibo', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-wechat', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-qq', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-github', 
+                        url  : 'https://github.com/first19326'
+                    },
+                
+            
+        ],
+
+        FooterStyle : 2,
+        BottomText  : {
+            icon    : 'like-fill',
+            left    : '人生若只如初见',
+            right   : '何事秋风悲画扇'
+        },
+        ThemeInfo   : true,
+
+        ConsoleList : [
+            
+                
+                    [
+                        
+                            
+                                'Based on cnblogs theme SimpleMemory.',
+                            
+                                '',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'SimpleMemory Author:',
+                            
+                                'BNDong',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'Theme:',
+                            
+                                'LiveForCode',
+                            
+                        
+                    ],
+                
+            
+        ],
+
+        FontIconExtend : '',
+
+        Donate : {
+            paypal  : '',
+            bitcoin : '',
+            alipay  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/alipay.png',
+            wechat  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/wechat.png'
+        },
+
+        Code : {
+            style : 'normal'
+        },  
+
+        Search : {
+            applicationID : '010C3EANT8',
+            apiKey        : 'c7abab9f11b79102b9aff7fe6d41447d',
+            indexName     : 'Notes',
+            hits          : {
+                page : 10
+            },
+            labels        : {
+                placeholder : '搜索',
+                empty       : '未发现与 「${query}」 相关的内容',
+                stats       : '${hits} 条相关条目，使用了 ${time} 毫秒',
+            }
+        }, 
+
+        Valine : {
+            switch         : true,
+            el             : '.comments-content',
+            appId          : 'srhKtvWPQTWYKh3qX8G8M7v0-gzGzoHsz',
+            appKey         : '8uVSP1q6UlALVC5igYfIfv2h',
+            placeholder    : '你是我一生只会遇见一次的惊喜...',
+            avatar         : 'mm',
+            meta           : 'nick,mail,link',
+            requiredFields : 'nick,mail',
+            pageSize       : 5,
+            lang           : 'zh-cn',
+            visitor        : true,
+            enableQQ       : true
+        },
+
+        Tocbot : {
+            switch                : true,
+            tocSelector           : '.toc',
+            contentSelector       : '.article-body',
+            headingSelector       : 'h1, h2, h3, h4, h5',
+            headingsOffset        : 0,
+            scrollSmooth          : true,
+            scrollSmoothOffset    : -5,
+            positionFixedSelector : '.toc',
+            positionFixedClass    : 'toc-fixed',
+            fixedSidebarOffset    : '',
+        },
+
+        Require : {
+            baseUrl     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/',
+            waitSeconds : 100
+        },
+
+        Music : {
+            type : 'Meting'
+        },
+        APlayer : {
+            container : '.aplayer',
+            fixed     : true,
+            autoplay  : false,
+            loop      : 'all',
+            order     : 'random',
+            preload   : 'auto',
+            volume    : 0.67,
+            mutex     : true,
+            lrcType   : 3,
+            audio     : [
+                
+                    {
+                        name   : 'aLIEz',
+                        artist : 'mizuki（瑞葵）',
+                        cover  : '/music/cover/aLIEz.jpg',
+                        url    : '/music/song/aLIEz.mp3',
+                        lrc    : '/music/lrc/aLIEz.lrc'
+                    },
+                
+                    {
+                        name   : 'Endless Tears',
+                        artist : 'CLIFF EDGE',
+                        cover  : '/music/cover/Endless Tears.jpg',
+                        url    : '/music/song/Endless Tears.mp3',
+                        lrc    : '/music/lrc/Endless Tears.lrc'
+                    },
+                
+                    {
+                        name   : 'Miracle',
+                        artist : 'Cascada',
+                        cover  : '/music/cover/Miracle.jpg',
+                        url    : '/music/song/Miracle.mp3',
+                        lrc    : '/music/lrc/Miracle.lrc'
+                    },
+                
+                    {
+                        name   : 'Roll The Dice',
+                        artist : '高珊',
+                        cover  : '/music/cover/Roll The Dice.jpg',
+                        url    : '/music/song/Roll The Dice.mp3',
+                        lrc    : '/music/lrc/Roll The Dice.lrc'
+                    },
+                
+                    {
+                        name   : 'See You Again',
+                        artist : 'Charlie Puth, Wiz Khalifa',
+                        cover  : '/music/cover/See You Again.jpg',
+                        url    : '/music/song/See You Again.mp3',
+                        lrc    : '/music/lrc/See You Again.lrc'
+                    },
+                
+                    {
+                        name   : 'Traveling Light',
+                        artist : 'Joel Hanson, Sara Groves',
+                        cover  : '/music/cover/Traveling Light.jpg',
+                        url    : '/music/song/Traveling Light.mp3',
+                        lrc    : '/music/lrc/Traveling Light.lrc'
+                    },
+                
+                    {
+                        name   : '痴心绝对',
+                        artist : '李圣杰',
+                        cover  : '/music/cover/痴心绝对.jpg',
+                        url    : '/music/song/痴心绝对.mp3',
+                        lrc    : '/music/lrc/痴心绝对.lrc'
+                    },
+                
+                    {
+                        name   : '好想大声说爱你',
+                        artist : 'BAAD（バード）',
+                        cover  : '/music/cover/好想大声说爱你.jpg',
+                        url    : '/music/song/好想大声说爱你.mp3',
+                        lrc    : '/music/lrc/好想大声说爱你.lrc'
+                    },
+                
+            ]
+        },
+        Meting : {
+            id       : '3778678', 
+            lrcshow  : false, 
+            server   : 'netease', 
+            type     : 'playlist', 
+            fixed    : true, 
+            autoplay : false, 
+            loop     : 'all', 
+            order    : 'random', 
+            preload  : 'auto', 
+            volume   : 0.67, 
+            mutex    : true
+        },
+
+        LazyLoad : {
+            default : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/lazyload.svg'
+        },
+  
+        Style : {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css',
+            archive          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/archive.css',
+            donate           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/donate.css',
+            fancybox         : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/jquery.fancybox.css',
+            footer           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/footer.css',
+            iconfont         : 'https://at.alicdn.com/t/font_1546312_l3yohatebw.css',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css',
+            menuBubble       : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/menu-bubble.css',
+            page             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/page.css',
+            post             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css',
+            search           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css',
+            tocbot           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/tocbot.css',
+            normal           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css',
+            night            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/night.css',
+            clipboard        : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/clipboard.css'
+        },
+
+        Script: {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js',
+            config           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.config.js',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js',
+            instantSearch    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js',
+            jQuery           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js',
+            loading          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/loading.js',
+            meting           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js',
+            iscroll          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js',
+            require          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.min.js'
+        },
+
+        Font: {
+            LongCang   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css',
+            Monda      : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css',
+            NotoSansSC : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css',
+            Playball   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css',
+            PTMono     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css',
+            RobotoSlab : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css',
+            Rosario    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css',
+            UbuntuMono : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css'
+        },
+
+        Suffix : {
+            about : '简单地活着, 肆意又精彩.'
+        },
+            
+        Theme : {
+            url  : 'https://github.com/first19326/Hexo-LiveForCode',
+            name : 'Hexo - Live For Code'
+        }  
+    };
+</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js"></script>
+</body>
+</html>

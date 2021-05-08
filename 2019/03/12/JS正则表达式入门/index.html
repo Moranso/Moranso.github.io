@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>JS正则表达式入门</title>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <a id="cover"></a>
+    <div id="header">
+    <div class="header">
+        <div class="vertical">
+            <div class="inner">
+                <h1 class="header-subtitle">JS正则表达式入门</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2019-03-12
+                        </span>
+                        
+                            <span id="/2019/03/12/JS正则表达式入门/" class="leancloud_visitors" data-flag-title="JS正则表达式入门">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2019/03/12/JS正则表达式入门/"></span>
+                        </span>  
+                    </p>                 
+                </div>
+            </div>
+        </div>
+        <canvas id="articleHeaderCanvas"></canvas>
+    </div>
+</div>
+    <div id="container">
+    <div id="content">
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h3 id="正则表达式是一种字符模式对象（RegExp）Regular-Expression"><a href="#正则表达式是一种字符模式对象（RegExp）Regular-Expression" class="headerlink" title="正则表达式是一种字符模式对象（RegExp）Regular Expression"></a>正则表达式是一种字符模式对象（RegExp）Regular Expression</h3><p>1、new构造方式<br>var r = new RegExp(“abc”);<br>2、字面量方式（推荐）<br>var r = /abc/;</p>
+<hr>
+<p>RegExp 对象方法</p>
+<p>test    检索字符串中指定的值。返回 true 或 false。</p>
+<p>var r = /abc/;<br>console.log(r.test(“abcc”)); //1</p>
+<hr>
+<h4 id="精确匹配，-abc"><a href="#精确匹配，-abc" class="headerlink" title="精确匹配，/abc/"></a>精确匹配，/abc/</h4><p>修饰符        描述<br>i              执行对大小写不敏感的匹配。<br>g             执行全局匹配（查找所有匹配而非在找到第一个匹配后停止,替换、提取字符串时候有用）。<br>m            执行多行匹配。</p>
+<p>/abc/igm</p>
+<hr>
+<p>非可见字符，如空格，换行等。反斜线()作为前缀进行转义，使用“\特殊字符”转义<br>\n 查找换行符  \r 查找回车符。</p>
+<p>^  $  ．  *  +  ?  =  !  ：  |  ＼  ／  (  )  [  ]  {  } 具有特殊含义  </p>
+<p>var r = /\n/;    //匹配一个换行<br>console.log(r.test(“aaaaaaaaaaaaaaaaa\nb”));     //true</p>
+<p>var re = /.jpg/;<br>re.test(“hahajpg”);     //true<br>re.test(“haha.jpg”);    //true</p>
+<p>re = /.jpg/;<br>re.test(“hahajpg”);     //false<br>re.test(“haha.jpg”);     //true</p>
+<hr>
+<h4 id="abc-匹配“a”“b”和“c”中的任何一个字符"><a href="#abc-匹配“a”“b”和“c”中的任何一个字符" class="headerlink" title="[abc] 匹配“a”“b”和“c”中的任何一个字符"></a>[abc] 匹配“a”“b”和“c”中的任何一个字符</h4><p>var re = /[abc]/;<br>re.test(“console”);     //true<br>console.log(r.test(“byyyyy”));    //true<br>console.log(r.test(“ayyybyyc”));    //true<br>re.test(“hehe”);     //false</p>
+<hr>
+<p>[^abc] 除了“a”、”b”、“c”以外的任意字符，即不能单独出现“a”或”b”或“c”</p>
+<p>console.log(re.test(“console”)); //1<br>console.log(re.test(“a”)); //0<br>console.log(re.test(“b”)); //0<br>console.log(re.test(“c”)); //0<br>console.log(re.test(“a5”)); //1<br>console.log(re.test(“are”)); //1</p>
+<hr>
+<h4 id="匹配一类字符"><a href="#匹配一类字符" class="headerlink" title="匹配一类字符"></a>匹配一类字符</h4><p>[0-9]    查找任何从 0 至 9 的数字。<br>[a-z]    查找任何从小写 a 到小写 z 的字符。<br>[A-Z]    查找任何从大写 A 到大写 Z 的字符。<br>[A-z]    查找任何从大写 A 到小写 z 的字符。<br>[adgk]    查找给定集合内的任何字符。<br>[^adgk]    查找给定集合外的任何字符。<br>(red|blue|green)    查找任何指定的选项。</p>
+<p>r = /[0-9]/;    //字符串中必须出现0-9其中一个，一次就行；<br>console.log(r.test(“456789a12345”));    //true;<br>console.log(r.test(“aaaaaaaa”));    //false;</p>
+<p>r = /[a-zA-Z0-9]/;<br>console.log(r.test(“A”));    //true;<br>console.log(r.test(“a8”));    //true;</p>
+<h5 id="r-匹配字符串中“-”-”-“其中一个；"><a href="#r-匹配字符串中“-”-”-“其中一个；" class="headerlink" title="r = /[^-]/; //匹配字符串中“^”,”-“其中一个；"></a>r = /[^-]/; //匹配字符串中“^”,”-“其中一个；</h5><p>console.log(r.test(“fasdf^131312”));//true</p>
+<h4 id="匹配文件后缀是否是以“-jpg”-“-png”-“-”-代表或者；"><a href="#匹配文件后缀是否是以“-jpg”-“-png”-“-”-代表或者；" class="headerlink" title="匹配文件后缀是否是以“.jpg”,“.png”   “|” 代表或者；"></a>匹配文件后缀是否是以“.jpg”,“.png”   “|” 代表或者；</h4><p>r = /.(jpg|png)/; //表示”.”后面出现jpg或png;<br>console.log(r.test(“xxx.jpg”));//true<br>console.log(r.test(“xxx.png”));//true<br>console.log(r.test(“xxx.gif”));//false<br>console.log(r.test(“xxxpng”));//false<br>console.log(r.test(“xxx.pngggggg”));//true</p>
+<hr>
+<p>选择（其一）</p>
+<p>字符“|”用于分隔供选择的字符，“|” 可以理解为或者的意思；<br>比如：var re = /jpg|png|gif/; //匹配字符串中jpg、png、gif; 字符串中只需要匹配其中一个就ok了；<br>      re.test(“xxx.jpg”);//true</p>
+<hr>
+<h4 id="指定位置（限定位置）"><a href="#指定位置（限定位置）" class="headerlink" title="指定位置（限定位置）"></a>指定位置（限定位置）</h4><p>^n    匹配任何开头为 n 的字符串。<br>n$    匹配任何结尾为 n 的字符串。<br>(?=n)    匹配任何其后紧接指定字符串 n 的字符串。<br>(?!n)    匹配任何其后没有紧接指定字符串 n 的字符串。</p>
+<p>r = /.(jpg|png)$/;<br>console.log(r.test(“xxx.pngggggg”));//false<br>r=/[1-9]/;<br>r.test(“a3399dsfd”);//1<br>r=/^[1-9]/;<br>r.test(“03399dsfd”);//0<br>r.test(“13399dsfd”);//1<br>//QQ号规则，不能以0开头的5-12位数字<br>r=/^[1-9]\d{4,11}/<br>r.test(“13399dsfd”);//1<br>r=/^[1-9]\d{4,11}$/<br>r.test(“13399dsfd”);//0<br>r.test(“1339955656”);//1</p>
+<hr>
+<h4 id="元字符类"><a href="#元字符类" class="headerlink" title="元字符类"></a>元字符类</h4><p>.    查找单个字符，除了换行和行结束符。<br>\w    查找单词字符。  //[a-zA-Z0-9_]<br>\W    查找非单词字符。<br>\d    查找数字。<br>\D    查找非数字字符。<br>\s    查找空白字符。<br>\S    查找非空白字符。<br>\b    匹配单词边界。<br>\B    匹配非单词边界。</p>
+<p>var r = /./;<br>console.log(r.test(“(“));//true</p>
+<p>r = /\w/; //[a-zA-Z0-9_];//单词字符，包含_<br>console.log(r.test(“@”));//false</p>
+<p>r = /\W/; //[^a-zA-Z0-9_];//非单词字符。<br>console.log(r.test(“%”));//true</p>
+<p>r = /\d/;//[0-9]数字<br>console.log(r.test(“0.5”));//true</p>
+<p>r = /\D/;//[^0-9]非数字<br>console.log(r.test(“0.5”));//true</p>
+<p>r = /\s/; //空白字符<br>console.log(r.test(“5a “));//true</p>
+<p>r = /\S/; //非空白字符<br>console.log(r.test(“5 abc”));//false<br>console.log(r.test(“5abc”));//true</p>
+<hr>
+<h4 id="量词：限定字符（重复次数）"><a href="#量词：限定字符（重复次数）" class="headerlink" title="量词：限定字符（重复次数）"></a>量词：限定字符（重复次数）</h4><p>n+<br>匹配任何包含至少一个 n 的字符串。<br>n*<br>匹配任何包含零个或多个 n 的字符串。<br>n?<br>匹配任何包含零个或一个 n 的字符串。<br>n{X}<br>匹配包含 X 个 n 的序列的字符串。<br>n{X,Y}<br>匹配包含 X 或 Y 个 n 的序列的字符串。<br>n{X,}<br>匹配包含至少 X 个 n 的序列的字符串。</p>
+<p>列如：<br>/\d{2，4}/     //匹配2-4个数字<br>/\w{3}\d?/     //匹配3个单词和一个可选数字<br>/\s+js\s+/     //匹配前后各带一个或多个空格的字符串”js”<br>var r = /\d\d\d\d\d\d\d\d\d\d/;//连续10个数字<br>console.log(r.test(“0123456789aaa”));//true</p>
+<p>r = /\d+/;<br>console.log(r.test(“abc1”));//1<br>console.log(r.test(“abc11”));//1</p>
+<p>r = /\d*/;//零个或多个 n的字符串<br>console.log(r.test(“abc”));//1<br>console.log(r.test(“abcfasdf23423423542352345”));//1</p>
+<p>r = /\d?/;//匹配任何包含零个或一个 n 的字符串。<br>console.log(r.test(“abc1”));//1</p>
+<p>r = /\d{3}/;//字符串中连续出现3个数字；<br>console.log(r.test(“a123”));//1</p>
+<p>r = /\d{5,12}/;//字符串中连续5-12个数字；<br>console.log(r.test(“123456789011144444444”));//1</p>
+<p>r = /\d{5,}/;//字符串中连续5个以上数字；<br>console.log(r.test(“1234a545679”));//1</p>
+<p>//匹配qq<br>r = /[1-9]\d{4,11}/;<br>console.log(r.test(“012345”));//true //不能只看整体，要依次看匹配情况</p>
+<hr>
+<h4 id="贪婪匹配与非贪婪匹配"><a href="#贪婪匹配与非贪婪匹配" class="headerlink" title="贪婪匹配与非贪婪匹配"></a>贪婪匹配与非贪婪匹配</h4><h4 id="默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个-号即可；"><a href="#默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个-号即可；" class="headerlink" title="默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个?号即可；"></a>默认重复匹配是贪婪匹配，修改为非贪婪匹配只须量词后面加一个?号即可；</h4><p>例子：<br>  var s = “gggg<a href="mailto:&#x61;&#x61;&#x61;&#x40;&#x69;&#116;&#x73;&#x6f;&#117;&#x72;&#x63;&#x65;&#x2e;&#99;&#110;">&#x61;&#x61;&#x61;&#x40;&#x69;&#116;&#x73;&#x6f;&#117;&#x72;&#x63;&#x65;&#x2e;&#99;&#110;</a>和<a href="mailto:&#x62;&#x62;&#98;&#64;&#x69;&#116;&#x73;&#111;&#x75;&#114;&#99;&#x65;&#x2e;&#x63;&#110;">&#x62;&#x62;&#98;&#64;&#x69;&#116;&#x73;&#111;&#x75;&#114;&#99;&#x65;&#x2e;&#x63;&#110;</a>hhhhh”;</p>
+<p>  var r = /&lt;.*&gt;/;<br>  console.log(r.test(s));<br>  console.log(r.exec(s));<br>  console.log(r.exec(s).length);<br>  console.log(r.exec(s)[0]);</p>
+<p>  r = /&lt;.*?&gt;/;<br>  console.log(r.test(s));<br>  console.log(r.exec(s));<br>  console.log(r.exec(s).length);<br>  console.log(r.exec(s)[0]);</p>
+<p>  // g全局匹配，匹配了第一个，然后接着继续匹配，执行一次匹配一次<br>  r = /&lt;.*?&gt;/g;<br>  console.log(r.exec(s));<br>  console.log(r.exec(s)[0]);</p>
+<hr>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p>正则表达式中的圆括号有多种作用，可以把单独的项组合成子表达式，以便可以处理一个；</p>
+<p>像处理一个独立的单元那样用“|”、  “*”、  “+”或者“？”等来对单元内的项进行处理。</p>
+<p>例如：/java(script)?/可以匹配字符串“java”，其后可以有“script”也可以没有</p>
+<p>正则表达式中，圆括号的另一个作用是在完整的模式中定义子模式。当一个正则表达式成功地和目标字符串相匹配时，可以从目标串中抽出和圆括号中的子模式相匹配的部分。</p>
+<p>一个或多个小写字母后面跟随了一位或多位数字，则可以使用模式 /[a-z]+\d+/<br>如果将模式的数字部分放在括号中/[a-z]+(\d+)/，就可以从检索到的匹配中抽取数字了</p>
+<p>例子：</p>
+<p>//正则表达式中的圆括号有多种作用-可以把单独的项组合成子表达式，然后可以这个这个子表达式使用量词；<br>var r  = /(hehe){4}/;<br>console.log(r.test(“yyyyy:hehehehehehe”));</p>
+<p>//例如，假定我们正在检索的模式是一个或多个小写字母后面跟随了一位或多位数字，则可以使用模式/[a-z]+\d+/。<br>var r = /[a-z]\d+/; //描述一个字符串是以a-z开头，后面紧跟着一个或多个数字<br>console.log(r.test(“a123”));</p>
+<p>//但假定我们真正关心的是每个匹配尾部的数字，那么如果将模式的数字部分放在括号中/<a href="%5Cd+">a-z</a>/，就可以从检索到的匹配中抽取数字了。<br>var r = /<a href="%5Cd+">a-z</a>/;<br>var arr = r.exec(“a88888”);<br>arr[1] //88888 ; //返回的数组中取二个元素，数组中的第二个元素就是正则中（\d+）的匹配；</p>
+<p>//引用()匹配的字符串；  \1引用第一个括号”()”中匹配到的内容；<br>r = /(\w)\1{2}/;<br>console.log(r.test(“AAA”));</p>
+<hr>
+<h4 id="RegExp-对象方法"><a href="#RegExp-对象方法" class="headerlink" title="RegExp 对象方法"></a>RegExp 对象方法</h4><p>test    检索字符串中指定的值。返回 true 或 false。</p>
+<p>var r = /^abc$/;<br>console.log(r.test(“abcc”)); //0</p>
+<p>exec(str)：用于使用正则表达式模式在指定字符串中进行匹配查找，并将查找结果以数组形式返回,没有找到就返回null<br>        exec()方法的返回值为Array类型，如果找到了对应的匹配，则返回数组的成    员如下：<br>        索引0：存放第一个匹配的子字符串。<br>        属性index：匹配正则表达式在目标字符串中的起始索引位置。<br>        属性input：整个字符串对象(stringObject)。<br>        属性length：长度</p>
+<p>//g表示从整个字符串中查找，但是每次执行exec方法只查找一次。<br>//如果你需要在整个字符串中匹配所有，那么请加”g”全局。</p>
+<p>r =/\d+/g;</p>
+<p>//返回一个数组，数组的第一个元素就是匹配的值。<br>var arr = r.exec(“a123a456”);<br>console.log(arr[0]);<br>console.log(arr.index);//匹配字符串位置</p>
+<p>arr = r.exec(“a123a456”);<br>console.log(arr[0]);<br>console.log(arr.index);//匹配字符串位置</p>
+<p>r=/\d+/g;</p>
+<p>while(true){<br>    var arr = r.exec(“a123a456a789”);<br>    if(arr!=null){//判断是否有匹配到字符串。<br>        console.log(arr[0]);<br>    }else{<br>        break;<br>    }<br>}</p>
+<hr>
+<h4 id="支持正则表达式的-String-对象的方法"><a href="#支持正则表达式的-String-对象的方法" class="headerlink" title="支持正则表达式的 String 对象的方法"></a>支持正则表达式的 String 对象的方法</h4><p>search    检索与正则表达式相匹配的值。<br>match    找到一个或多个正则表达式的匹配。<br>replace    替换与正则表达式匹配的子串。<br>split    把字符串分割为字符串数组。</p>
+<p>//replace 替换与正则表达式匹配的子串。<br>//参数1：原字符， 参数1：替换后的字符串<br>var s = “1<em>2</em>3<em>4</em>5*6”;<br>s = s.replace(/*/g,”_”); //g:全部替换<br>console.log(s);</p>
+<p>//split 把字符串分割为字符串数组<br>var s = “hello world welcome”;<br>console.log(s.split(/\s+/));//s表示空格</p>
+
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWNryAUQjIABMqVoPLALU536.png" alt="Suki">
+            </div>
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Suki
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2019/03/12/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/" target="_blank">JS正则表达式入门</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="article-footer">
+        
+        
+        <div class="article-prev-next">
+            
+                <a href="/2019/03/12/Vue%E7%AC%94%E8%AE%B0/" class="prev-prefix">« </a> 上一篇：    <a href="/2019/03/12/Vue%E7%AC%94%E8%AE%B0/" title="发布于 2019-03-12 08:11">Vue笔记</a>
+                <br>
+            
+            
+                <a href="/2019/03/07/hello-world/" class="next-prefix">» </a> 下一篇：    <a href="/2019/03/07/hello-world/" title="发布于 2019-03-07 07:59">Hello World</a>
+            
+        </div>
+    </div>
+    
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
+        </div>
+        <div class="comments-content">
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <div id="footer"></div>
+    <div id="sidebar">
+    <div class="menu-wrap" style="display:none;">
+        <nav class="menu">
+            <div class="menu-introduce"> 
+                <div class="introduce-avatar"></div> 
+                <div class="introduce-info"> 
+                    <div class="introduce-user"><span></span></div>        
+                </div> 
+            </div> 
+            <div class="menu-list">
+                <ul></ul> 
+            </div> 
+            <div class="menu-link"></div> 
+        </nav>
+        <button class="menu-button-close"></button>
+        <div class="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"/>
+            </svg>
+        </div>
+    </div>
+    <button class="menu-button-open">MENU</button>
+    <div class="menu-cover"></div>
+</div>
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js"></script>
+<div class="search-window">
+    <div class="search-content">
+        <div class="search-content-icon">
+            <i class="iconfont icon-search"></i>
+        </div>
+        <div id="search-input" class="search-input"></div>
+    </div>
+
+    <div class="search-scroll">
+        <div class="search-result">
+            <div id="search-stats" class="search-stats"></div>
+            <div id="search-hits"></div>
+            <div id="search-pagination" class="search-pagination"></div>
+        </div>
+    </div>
+
+    <span class="search-close-icon">
+        <i class="iconfont icon-close"></i>
+    </span>
+</div>
+    <div id="tools">
+    <div class="progressbar-top"></div>
+
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js"></script>
+        <meting-js id="3778678" lrcshow="false" server="netease" type="playlist" fixed="true" autoplay="false" loop="all" order="random" preload="auto" volume="0.67" mutex="true"></meting-js>
+    
+    
+    <div class="wrap-right"></div>
+    <div class="loading"></div>
+</div>
+    <script>
+    window.config = {
+        GitHubUserName     : 'Moranso',
+        GitHubRepositories : 'Hexo-LiveForCode',
+
+        BlogUser      : 'Suki',
+        BlogAvatar    : 'http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWNryAUQjIABMqVoPLALU536.png',
+        BlogStartDate : '2021-05-08',
+
+        WebsiteTitleBlur         : '(◍´꒳`◍)',
+        WebsiteTitleBlurTimeOut  : 500,
+        WebsiteTitleFocus        : '(*´∇｀*) 欢迎回来!',
+        WebsiteTitleFocusTimeOut : 1000,
+        WebsiteFavicon           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/logo.png',
+
+        ProgressBar: {
+            id       : 'topProgressBar',
+            color    : '#77B6FF',
+            height   : '2px',
+            duration : 0.2
+        },
+
+        Loading: {
+            rebound: {
+                tension  : 16,
+                friction : 5
+            },
+            spinner: {
+                id     : 'spinner',
+                radius : 90,
+                sides  : 3,
+                depth  : 4,
+                colors : {
+                    background : '#F0F0F0',
+                    stroke     : '#272633',
+                    base       : '',
+                    child      : '#272633'
+                },
+                alwaysForward : true,
+                restAt        : 0.5,
+                renderBase    : false
+            }
+        },
+
+        HomeHeaderAnimationRendered : true,
+        HomeHeaderAnimation         : {
+            radius      : 15,
+            density     : 0.2,
+            color       : 'rgba(255, 255, 255, .2)',
+            clearOffset : 0.3
+        },
+
+        ArticleHeaderAnimationRendered : false,
+        ArticleHeaderAnimation         : {
+            triW                  : 14,
+            triH                  : 20,
+            neighbours            : [
+                
+                    'side',
+                
+                    'top',
+                
+                    'bottom',
+                
+            ],
+            speedTrailAppear      : 0.1,
+            speedTrailDisappear   : 0.1,
+            speedTriOpen          : 1,
+            trailMaxLength        : 30,
+            trailIntervalCreation : 100,
+            delayBeforeDisappear  : 2,
+            colors                : [
+                
+                    '#96EDA6',
+                
+                    '#5BC6A9',
+                
+                    '#38668C',
+                
+                    '#374D84',
+                
+                    '#BED5CB',
+                
+                    '#62ADC6',
+                
+                    '#8EE5DE',
+                
+                    '#304E7B',
+                
+            ]
+        },
+
+        BackAnimationRendered          : true,
+        IEBrowserBackAnimationRendered : false,
+        BackAnimation                  : {
+            colorSaturation  : '60%',
+            colorBrightness  : '50%',
+            colorAlpha       : 0.5,
+            colorCycleSpeed  : 5,
+            verticalPosition : 'random',
+            horizontalSpeed  : 200,
+            ribbonCount      : 3,
+            strokeSize       : 0,
+            parallaxAmount   : -0.2,
+            animateSections  : true
+        },
+
+        HomeHeaderImage : [
+            
+                'http://192.168.2.164:8888/group1/M00/04/32/wKgCpGCWKJeAGtMAAALNZlUgWKk288.jpg',
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/home.jpeg',
+            
+        ],
+        HomeBannerText  : '',
+
+        ArticleHeaderImage : [
+            
+                'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/header/article.jpg',
+            
+        ],
+
+        OtherBannerText : '',
+
+        MenuList : [
+            
+                {
+                    name   : '首页',
+                    href   : '/',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '标签',
+                    href   : '/tag',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '分类',
+                    href   : '/category',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '归档',
+                    href   : '/archive',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '赞赏',
+                    href   : '/donate',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '关于',
+                    href   : '/about',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '订阅',
+                    href   : '/atom.xml',    
+                    target : '_blank',
+                    class  : ''
+                },
+            
+                {
+                    name   : '搜索',
+                    href   : '',    
+                    target : '',
+                    class  : 'search'
+                },
+            
+                {
+                    name   : '留言板',
+                    href   : '/comment',    
+                    target : '',
+                    class  : ''
+                },
+            
+                {
+                    name   : '友情链接',
+                    href   : '/friend',    
+                    target : '',
+                    class  : ''
+                },
+            
+        ],
+        MenuLink : [
+            
+                
+                    {
+                        icon : 'icon-weibo', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-wechat', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-qq', 
+                        url  : ''
+                    },
+                
+                    {
+                        icon : 'icon-github', 
+                        url  : 'https://github.com/first19326'
+                    },
+                
+            
+        ],
+
+        FooterStyle : 2,
+        BottomText  : {
+            icon    : 'like-fill',
+            left    : '人生若只如初见',
+            right   : '何事秋风悲画扇'
+        },
+        ThemeInfo   : true,
+
+        ConsoleList : [
+            
+                
+                    [
+                        
+                            
+                                'Based on cnblogs theme SimpleMemory.',
+                            
+                                '',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'SimpleMemory Author:',
+                            
+                                'BNDong',
+                            
+                        
+                    ],
+                
+                    [
+                        
+                            
+                                'Theme:',
+                            
+                                'LiveForCode',
+                            
+                        
+                    ],
+                
+            
+        ],
+
+        FontIconExtend : '',
+
+        Donate : {
+            paypal  : '',
+            bitcoin : '',
+            alipay  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/alipay.png',
+            wechat  : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/donate/wechat.png'
+        },
+
+        Code : {
+            style : 'normal'
+        },  
+
+        Search : {
+            applicationID : '010C3EANT8',
+            apiKey        : 'c7abab9f11b79102b9aff7fe6d41447d',
+            indexName     : 'Notes',
+            hits          : {
+                page : 10
+            },
+            labels        : {
+                placeholder : '搜索',
+                empty       : '未发现与 「${query}」 相关的内容',
+                stats       : '${hits} 条相关条目，使用了 ${time} 毫秒',
+            }
+        }, 
+
+        Valine : {
+            switch         : true,
+            el             : '.comments-content',
+            appId          : 'srhKtvWPQTWYKh3qX8G8M7v0-gzGzoHsz',
+            appKey         : '8uVSP1q6UlALVC5igYfIfv2h',
+            placeholder    : '你是我一生只会遇见一次的惊喜...',
+            avatar         : 'mm',
+            meta           : 'nick,mail,link',
+            requiredFields : 'nick,mail',
+            pageSize       : 5,
+            lang           : 'zh-cn',
+            visitor        : true,
+            enableQQ       : true
+        },
+
+        Tocbot : {
+            switch                : true,
+            tocSelector           : '.toc',
+            contentSelector       : '.article-body',
+            headingSelector       : 'h1, h2, h3, h4, h5',
+            headingsOffset        : 0,
+            scrollSmooth          : true,
+            scrollSmoothOffset    : -5,
+            positionFixedSelector : '.toc',
+            positionFixedClass    : 'toc-fixed',
+            fixedSidebarOffset    : '',
+        },
+
+        Require : {
+            baseUrl     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/',
+            waitSeconds : 100
+        },
+
+        Music : {
+            type : 'Meting'
+        },
+        APlayer : {
+            container : '.aplayer',
+            fixed     : true,
+            autoplay  : false,
+            loop      : 'all',
+            order     : 'random',
+            preload   : 'auto',
+            volume    : 0.67,
+            mutex     : true,
+            lrcType   : 3,
+            audio     : [
+                
+                    {
+                        name   : 'aLIEz',
+                        artist : 'mizuki（瑞葵）',
+                        cover  : '/music/cover/aLIEz.jpg',
+                        url    : '/music/song/aLIEz.mp3',
+                        lrc    : '/music/lrc/aLIEz.lrc'
+                    },
+                
+                    {
+                        name   : 'Endless Tears',
+                        artist : 'CLIFF EDGE',
+                        cover  : '/music/cover/Endless Tears.jpg',
+                        url    : '/music/song/Endless Tears.mp3',
+                        lrc    : '/music/lrc/Endless Tears.lrc'
+                    },
+                
+                    {
+                        name   : 'Miracle',
+                        artist : 'Cascada',
+                        cover  : '/music/cover/Miracle.jpg',
+                        url    : '/music/song/Miracle.mp3',
+                        lrc    : '/music/lrc/Miracle.lrc'
+                    },
+                
+                    {
+                        name   : 'Roll The Dice',
+                        artist : '高珊',
+                        cover  : '/music/cover/Roll The Dice.jpg',
+                        url    : '/music/song/Roll The Dice.mp3',
+                        lrc    : '/music/lrc/Roll The Dice.lrc'
+                    },
+                
+                    {
+                        name   : 'See You Again',
+                        artist : 'Charlie Puth, Wiz Khalifa',
+                        cover  : '/music/cover/See You Again.jpg',
+                        url    : '/music/song/See You Again.mp3',
+                        lrc    : '/music/lrc/See You Again.lrc'
+                    },
+                
+                    {
+                        name   : 'Traveling Light',
+                        artist : 'Joel Hanson, Sara Groves',
+                        cover  : '/music/cover/Traveling Light.jpg',
+                        url    : '/music/song/Traveling Light.mp3',
+                        lrc    : '/music/lrc/Traveling Light.lrc'
+                    },
+                
+                    {
+                        name   : '痴心绝对',
+                        artist : '李圣杰',
+                        cover  : '/music/cover/痴心绝对.jpg',
+                        url    : '/music/song/痴心绝对.mp3',
+                        lrc    : '/music/lrc/痴心绝对.lrc'
+                    },
+                
+                    {
+                        name   : '好想大声说爱你',
+                        artist : 'BAAD（バード）',
+                        cover  : '/music/cover/好想大声说爱你.jpg',
+                        url    : '/music/song/好想大声说爱你.mp3',
+                        lrc    : '/music/lrc/好想大声说爱你.lrc'
+                    },
+                
+            ]
+        },
+        Meting : {
+            id       : '3778678', 
+            lrcshow  : false, 
+            server   : 'netease', 
+            type     : 'playlist', 
+            fixed    : true, 
+            autoplay : false, 
+            loop     : 'all', 
+            order    : 'random', 
+            preload  : 'auto', 
+            volume   : 0.67, 
+            mutex    : true
+        },
+
+        LazyLoad : {
+            default : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/image/website/lazyload.svg'
+        },
+  
+        Style : {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/APlayer.css',
+            archive          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/archive.css',
+            donate           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/donate.css',
+            fancybox         : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/jquery.fancybox.css',
+            footer           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/footer.css',
+            iconfont         : 'https://at.alicdn.com/t/font_1546312_l3yohatebw.css',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css',
+            menuBubble       : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/menu-bubble.css',
+            page             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/page.css',
+            post             : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css',
+            search           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/search.css',
+            tocbot           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/tocbot.css',
+            normal           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css',
+            night            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/night.css',
+            clipboard        : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/clipboard.css'
+        },
+
+        Script: {
+            aplayer          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/APlayer.min.js',
+            config           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.config.js',
+            index            : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js',
+            instantSearch    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/instantsearch.min.js',
+            jQuery           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js',
+            loading          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/loading.js',
+            meting           : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/Meting.min.js',
+            iscroll          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/iscroll.js',
+            require          : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/require.min.js'
+        },
+
+        Font: {
+            LongCang   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css',
+            Monda      : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css',
+            NotoSansSC : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/NotoSansSC.css',
+            Playball   : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Playball.css',
+            PTMono     : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/PTMono.css',
+            RobotoSlab : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/RobotoSlab.css',
+            Rosario    : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css',
+            UbuntuMono : 'https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css'
+        },
+
+        Suffix : {
+            about : '简单地活着, 肆意又精彩.'
+        },
+            
+        Theme : {
+            url  : 'https://github.com/first19326/Hexo-LiveForCode',
+            name : 'Hexo - Live For Code'
+        }  
+    };
+</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/index.js"></script>
+</body>
+</html>
